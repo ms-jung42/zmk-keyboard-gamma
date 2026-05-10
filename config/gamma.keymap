@@ -1,0 +1,169 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#define DEFAULT 0
+
+&mt {
+    tapping-term-ms = <140>;
+};
+
+&lt {
+    tapping-term-ms = <200>;
+};
+
+/ { 
+combos {
+    compatible = "zmk,combos";
+        combo_space {
+            timeout-ms = <50>;
+            key-positions = <61 70>;
+            bindings = <&kp SPACE>;
+        };
+        combo_bt {
+            timeout-ms = <50>;
+            key-positions = <0 14>;
+            bindings = <&tog 2>;
+        };
+        combo_Rpara {
+            timeout-ms = <50>;
+            key-positions = <31 32>;
+            bindings = <&kp RPAR>;
+        };
+        combo_hash {
+            timeout-ms = <50>;
+            key-positions = <16 17>;
+            bindings = <&hashdash>;
+        };
+        combo_Lpara {
+            timeout-ms = <50>;
+            key-positions = <29 30>;
+            bindings = <&kp LPAR>;
+        };
+        combo_num {
+            timeout-ms = <50>;
+            key-positions = <30 31>;
+            bindings = <&mo 1>;
+        };
+        hr_space {
+            timeout-ms = <50>;
+            key-positions = <35 36>;
+            bindings = <&kp SPACE>;
+        };
+        hr_enter {
+            timeout-ms = <50>;
+            key-positions = <37 38>;
+            bindings = <&kp ENTER>;
+        };
+        hr2_enter {
+            timeout-ms = <50>;
+            key-positions = <17 18>;
+            bindings = <&kp ENTER>;
+        };
+        hr_bkps {
+            timeout-ms = <50>;
+            key-positions = <36 37>;
+            bindings = <&thumblang>;
+        };
+        hr_shft {
+            timeout-ms = <50>;
+            key-positions = <18 19>;
+            bindings = <&sk LSHFT>;
+        };
+        hr_lang1 {
+            timeout-ms = <50>;
+            key-positions = <21 22>;
+            bindings = <&kp LANG1>;
+        };
+        hr2_lang1 {
+            timeout-ms = <50>;
+            key-positions = <36 61>;
+            bindings = <&kp LANG1>;
+        };
+    };               
+
+
+behaviors {
+    gre: grave_esc {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE";
+            #binding-cells = <0>;
+            tapping-term-ms = <140>;
+            bindings = <&mt LS(GRAVE) GRAVE>, <&kp ESC>;
+        };
+    enterspace: enterspace {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_MOD_TAP";
+            #binding-cells = <0>;
+            tapping-term-ms = <150>;
+            bindings = <&spaceback>, <&kp ENTER>;
+        };
+    spaceback: spaceback {
+            compatible = "zmk,behavior-mod-morph";
+            label = "spaceback";
+            #binding-cells = <0>;
+            bindings = <&kp SPACE>, <&mt LC(BACKSPACE) BACKSPACE>;
+            mods = <MOD_LSFT>;
+        };          
+    hashdash: hash_dash {
+            compatible = "zmk,behavior-tap-dance";
+            label = "hashdash";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&kp HASH>, <&kp MINUS>;
+        };
+    hrm_dot: jtodot {
+            compatible = "zmk,behavior-tap-dance";
+            label = "jtodot";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&kp J>, <&kp DOT>;
+        };
+    hrm_com: ktocom {
+            compatible = "zmk,behavior-tap-dance";
+            label = "ktocom";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&kp K>, <&kp COMMA>;
+        };
+    hrm_lang1: ftolang {
+            compatible = "zmk,behavior-tap-dance";
+            label = "ftolang";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp H>, <&kp LANG1>;
+        };    
+    thumblang: thumblang {
+            compatible = "zmk,behavior-mod-morph";
+            label = "thumblang";
+            #binding-cells = <0>;
+            bindings = <&kp BACKSPACE>, <&kp DELETE>;
+            mods = <MOD_LSFT>;
+        };   
+    hotab: behavior_hotab {
+            compatible = "zmk,behavior-hold-tap";
+            label = "hotab";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <150>;
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+&kp LALT     &kp SPACE &kp SPACE                                                                                                                                                                                      &kp LEFT             &kp DOWN             &kp UP               &kp RIGHT
+&kp HOME     &kp PG_DN &kp PG_UP                                                                                                                                                                                      &kp END              &kp INS              &kp DEL 
+&gre       &mt LS(N1) N1  &mt LS(N2) N2  &mt LS(N3) N3  &mt LS(N4) N4          &mt LS(N5) N5     &mt LS(N5) N5                        &mt LS(N6) N6  &mt LS(N7) N7          &mt LS(N8) N8          &mt LS(N9) N9      &mt LS(N0) N0        &mt LS(MINUS) MINUS  &mt LS(EQUAL) EQUAL  &kp DELETE &kp DELETE
+&kp TAB    &kp Q          &kp W          &kp E          &kp R                  &kp T             &kp T                                &kp Y          &kp U                  &kp I                  &kp O              &kp P                &mt LS(LBKT) LBKT    &mt LS(RBKT) RBKT    &kp NUBS  &kp NUBS
+&kp LSHFT  &lt 3 A        &kp S          &kp D          &hotab_sticky LCTRL F  &kp G                                                  &kp H          &hotab_sticky LCTRL J  &kp K                  &hotog_sticky 1 L  &mt LS(SEMI) SEMI    &kp SQT              &kp ENTER &kp ENTER
+&kp LCTRL  &kp LANG2      &kp Z          &kp X          &kp C                  &kp V             &kp B                 &kp B          &kp N          &kp M                  &kp COMMA              &kp DOT            &mt LS(SLASH) SLASH  &kp UP               &kp RSHFT    &kp RSHFT
+&kp LCTRL  &kp LWIN       &kp LALT       &kp DELETE                                              &hotab LSHFT SPACE    &enterspace                                          &sl 4                  &kp RALT           &kp LEFT             &kp DOWN             &kp RIGHT   &kp RIGHT
+            >;
+        };
+    };
+};
