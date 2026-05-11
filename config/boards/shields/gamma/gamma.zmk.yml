@@ -1,11 +1,14 @@
 file_format: "1"
-id: venus
-name: venus
+id: gamma
+name: gamma
 type: shield
 url: https://github.com/foostan/crkbd/
 requires: [nice_nano_v2]
 features:
   - keys
+  - display
+  - encoder
+  - pointer
 siblings:
   - gamma_left
   - gamma_right

@@ -6,8 +6,11 @@
 
 #define DEFAULT 0
 
-&mt { tapping-term-ms = <140>; };
+nice_view_spi: &spi0 {
+    cs-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+};
 
+&mt { tapping-term-ms = <140>; };
 &lt { tapping-term-ms = <200>; };
 
 / {
@@ -244,3 +247,4 @@
         };
     };
 };
+
