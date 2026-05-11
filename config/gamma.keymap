@@ -6,10 +6,6 @@
 
 #define DEFAULT 0
 
-nice_view_spi: &spi0 {
-    cs-gpios = <&pro_micro 21 GPIO_ACTIVE_HIGH>;
-};
-
 &mt { tapping-term-ms = <140>; };
 &lt { tapping-term-ms = <200>; };
 
