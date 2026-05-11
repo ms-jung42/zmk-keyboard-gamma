@@ -26,7 +26,5 @@ col-gpios
     status = "okay";
 };
 
-nice_view_spi: &spi0 {
-    cs-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
-};
+
 

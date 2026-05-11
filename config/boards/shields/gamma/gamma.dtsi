@@ -48,4 +48,8 @@ RC(6,0) RC(6,1) RC(6,2) RC(6,3)                 RC(6,6)      RC(6,7)            
 
 &spi0 {
     status = "okay";
-}
+};
+
+nice_view_spi: &spi0 {
+    cs-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+};
