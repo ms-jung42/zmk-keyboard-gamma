@@ -45,3 +45,7 @@ RC(6,0) RC(6,1) RC(6,2) RC(6,3)                 RC(6,6)      RC(6,7)            
         sensors = <&left_encoder &right_encoder>;
     };
 };
+
+&spi0 {
+    status = "okay";
+}

@@ -21,7 +21,7 @@
 include:
   - board: nice_nano_v2
     shield: gamma_left nice_view
+  - board: nice_nano_v2 
+    shield: gamma_right nice_view
   - board: nice_nano_v2
-    shield: gamma_right
-  - board: nice_nano_v2
-    shield: gamma_dongle
+    shield: gamma_dongle nice_view
