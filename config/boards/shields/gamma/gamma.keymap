@@ -94,6 +94,12 @@ nice_view_spi: &spi0 {
     };
 
     behaviors {
+        scroll_up_down: scroll_up_down {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+            tap-ms = <250>;
+        };
         gre: grave_esc {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE";
@@ -244,6 +250,7 @@ nice_view_spi: &spi0 {
 &kp LCTRL  &kp LANG2      &kp Z          &kp X          &kp C                  &kp V             &kp B                 &kp B          &kp N          &kp M                  &kp COMMA              &kp DOT            &mt LS(SLASH) SLASH  &kp UP               &kp RSHFT    &kp RSHFT
 &kp LCTRL  &kp LWIN       &kp LALT       &kp DELETE                                              &hotab LSHFT SPACE    &enterspace                                          &sl 4                  &kp RALT           &kp LEFT             &kp DOWN             &kp RIGHT   &kp RIGHT
             >;
+            sensor-bindings = <&scroll_up_down &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };
