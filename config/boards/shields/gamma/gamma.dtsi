@@ -30,14 +30,14 @@ RC(6,0) RC(6,1) RC(6,2) RC(6,3)                 RC(6,6)      RC(6,7)            
         compatible = "alps,ec11";
         a-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <20>;
+        steps = <80>;
         status = "disabled";
     };
     right_encoder: encoder_right {
         compatible = "alps,ec11";
         a-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&gpio1 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <20>;
+        steps = <80>;
         status = "disabled";
     };        
     sensors {
