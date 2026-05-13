@@ -3,4 +3,4 @@ config SHIELD_GAMMA_LEFT
 config SHIELD_GAMMA_RIGHT
     def_bool $(shields_list_contains,gamma_right)
 config SHIELD_GAMMA_DONGLE
-    def_bool $(shields_list_contains,gamma_right)
+    def_bool $(shields_list_contains,gamma_dongle)

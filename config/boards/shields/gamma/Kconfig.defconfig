@@ -18,4 +18,6 @@ endif
 if SHIELD_GAMMA_LEFT || SHIELD_GAMMA_RIGHT || SHIELD_GAMMA_DONGLE
 config ZMK_SPLIT
     default y
+config ZMK_BLE 
+    default y
 endif
