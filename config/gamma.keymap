@@ -29,7 +29,7 @@
         combo_Rpara {
             timeout-ms = <50>;
             key-positions = <49 79>;
-            bindings = <&lt 1 RPAR>;
+            bindings = <&kp RPAR>;
         };
 
         combo_hash {
@@ -42,12 +42,6 @@
             timeout-ms = <50>;
             key-positions = <46 47>;
             bindings = <&kp LPAR>;
-        };
-
-        hr_space {
-            timeout-ms = <50>;
-            key-positions = <35 36>;
-            bindings = <&hotab DOT SPACE>;
         };
 
         hr_enter {
