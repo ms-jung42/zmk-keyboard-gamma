@@ -197,6 +197,15 @@
             flavor = "tap-preferred";
             tapping-term-ms = <250>;
         };
+
+        plusequal: plusequal {
+            compatible = "zmk,behavior-mod-morph";
+            label = "PLUSEQUAL";
+            #binding-cells = <0>;
+            bindings = <&kp LS(EQUAL)>, <&kp EQUAL>;
+
+            mods = <(MOD_LSFT)>;
+        };
     };
 
     macros {
@@ -245,13 +254,13 @@
 
         default_layer {
             bindings = <
-&kp F1     &kp F2         &kp F3                                                                                                                                                                            &kp F7               &kp F8               &kp F9      &tog 1
-&kp F4     &kp F5         &kp F6                                                                                                                                                                            &kp F10              &kp F11              &kp F12
-&kp TILDE  &mt LS(N1) N1  &mt LS(N2) N2  &mt LS(N3) N3   &mt LS(N4) N4          &mt LS(N5) N5  &mt LS(N5) N5         &mt LS(N6) N6  &mt LS(N7) N7          &mt LS(N8) N8  &mt LS(N9) N9  &mt LS(N0) N0      &mt LS(MINUS) MINUS  &mt LS(EQUAL) EQUAL  &kp DELETE  &kp BACKSPACE
-&kp TAB    &kp Q          &kp W          &kp E           &kp R                  &kp T          &kp T                 &kp Y          &kp U                  &kp I          &kp O          &kp P              &mt LS(LBKT) LBKT    &mt LS(RBKT) RBKT    &kp NUBS    &kp NUBS
-&kp LSHFT  &kp A          &kp S          &lt 2 D         &hotab_sticky LCTRL F  &kp G                                &kp H          &hotab_sticky LCTRL J  &kp K          &kp L          &mt LS(SEMI) SEMI  &kp SQT              &kp ENTER                        &kp ENTER
-&kp LCTRL  &hashdash      &kp Z          &kp X           &kp C                  &kp V          &kp B                 &kp B          &kp N                  &kp M          &kp COMMA      &kp DOT            &mt LS(SLASH) SLASH  &kp UP               &kp ESCAPE  &kp RSHFT
-&kp LCTRL  &kp LWIN       &kp LALT       &kp LANGUAGE_2                                        &hotab LSHFT SPACE    &spaceback                                           &sl 4          &kp RALT           &kp LEFT             &kp DOWN             &kp RIGHT   &kp RCTRL
+&kp F1     &kp F2         &kp F3                                                                                                                                                                            &kp F7               &kp F8             &kp F9      &tog 1
+&kp F4     &kp F5         &kp F6                                                                                                                                                                            &kp F10              &kp F11            &kp F12
+&kp TILDE  &mt LS(N1) N1  &mt LS(N2) N2  &mt LS(N3) N3   &mt LS(N4) N4          &mt LS(N5) N5  &mt LS(N5) N5         &mt LS(N6) N6  &mt LS(N7) N7          &mt LS(N8) N8  &mt LS(N9) N9  &mt LS(N0) N0      &kp MINUS            &plusequal         &kp SLASH   &kp BACKSPACE
+&kp TAB    &kp Q          &kp W          &kp E           &kp R                  &kp T          &kp T                 &kp Y          &kp U                  &kp I          &kp O          &kp P              &mt LS(LBKT) LBKT    &mt LS(RBKT) RBKT  &kp NUBS    &kp NUBS
+&kp LSHFT  &lt 2 A        &kp S          &lt 1 D         &hotab_sticky LCTRL F  &kp G                                &kp H          &hotab_sticky LCTRL J  &kp K          &kp L          &mt LS(SEMI) SEMI  &kp SQT              &kp ENTER                      &kp ENTER
+&kp LCTRL  &hashdash      &kp Z          &kp X           &kp C                  &kp V          &kp B                 &kp B          &kp N                  &kp M          &kp COMMA      &kp DOT            &mt LS(SLASH) SLASH  &kp UP             &kp ESCAPE  &kp RSHFT
+&kp LCTRL  &kp LWIN       &kp LALT       &kp LANGUAGE_2                                        &hotab LSHFT SPACE    &spaceback                                           &sl 4          &kp RALT           &kp LEFT             &kp DOWN           &kp RIGHT   &kp RCTRL
             >;
 
             sensor-bindings =
@@ -261,13 +270,13 @@
 
         NUMPAD {
             bindings = <
-&trans  &trans  &trans                                                                                    &trans        &trans        &trans        &trans
-&trans  &trans  &trans                                                                                    &trans        &trans        &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans     &trans     &trans    &trans  &trans        &trans        &trans        &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans     &trans     &trans    &trans  &trans        &kp N7        &kp N8        &kp N9
-&trans  &trans  &trans  &trans  &trans  &trans            &trans  &kp MINUS  &kp SLASH  &kp PLUS  &trans  &kp NUMBER_4  &kp N5                      &kp NUMBER_6
-&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans     &trans     &trans    &trans  &trans        &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3
-&trans  &trans  &trans  &trans                  &trans    &trans                        &trans    &trans  &trans        &kp MINUS     &kp N0        &kp SLASH
+&trans  &trans  &trans                                                                               &trans        &trans        &trans        &trans
+&trans  &trans  &trans                                                                               &trans        &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans     &trans  &trans        &trans        &trans        &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans    &kp N7  &kp N8  &kp N9  &kp SLASH  &trans  &trans        &kp N7        &kp N8        &kp N9
+&trans  &trans  &trans  &trans  &trans  &trans            &kp N4  &kp N5  &kp N6  &kp PLUS   &trans  &kp NUMBER_4  &kp N5                      &kp NUMBER_6
+&trans  &trans  &trans  &trans  &trans  &trans  &trans    &kp N1  &kp N2  &kp N3  &kp MINUS  &trans  &trans        &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3
+&trans  &trans  &trans  &trans                  &trans    &kp N0                  &trans     &trans  &trans        &kp MINUS     &kp N0        &kp SLASH
             >;
         };
 
