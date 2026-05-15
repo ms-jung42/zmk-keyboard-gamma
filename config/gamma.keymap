@@ -206,6 +206,14 @@
 
             mods = <(MOD_LSFT)>;
         };
+
+        enteresc: enteresc {
+            compatible = "zmk,behavior-tap-dance";
+            label = "ENTERESC";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&kp ENTER>, <&kp ESCAPE>;
+        };
     };
 
     macros {
@@ -247,6 +255,20 @@
 
             label = "NEW_MACRO2";
         };
+
+        cycletab: cycletab {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LA(TAB)) &tog 4>;
+            label = "CYCLETAB";
+        };
+
+        cycletab_esc: cycletab_esc {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&enteresc &tog 4>;
+            label = "CYCLETAB_ESC";
+        };
     };
 
     keymap {
@@ -254,13 +276,13 @@
 
         default_layer {
             bindings = <
-&kp F1     &kp F2         &kp F3                                                                                                                                                                            &kp F7               &kp F8             &kp F9      &tog 1
+&kp F1     &kp F2         &kp F3                                                                                                                                                                            &kp F7               &kp F8             &kp F9      &kp LC(LA(DELETE))
 &kp F4     &kp F5         &kp F6                                                                                                                                                                            &kp F10              &kp F11            &kp F12
-&kp TILDE  &mt LS(N1) N1  &mt LS(N2) N2  &mt LS(N3) N3   &mt LS(N4) N4          &mt LS(N5) N5  &mt LS(N5) N5         &mt LS(N6) N6  &mt LS(N7) N7          &mt LS(N8) N8  &mt LS(N9) N9  &mt LS(N0) N0      &kp MINUS            &plusequal         &kp SLASH   &kp BACKSPACE
-&kp TAB    &kp Q          &kp W          &kp E           &kp R                  &kp T          &kp T                 &kp Y          &kp U                  &kp I          &kp O          &kp P              &mt LS(LBKT) LBKT    &mt LS(RBKT) RBKT  &kp NUBS    &kp NUBS
-&kp LSHFT  &lt 2 A        &kp S          &lt 1 D         &hotab_sticky LCTRL F  &kp G                                &kp H          &hotab_sticky LCTRL J  &kp K          &kp L          &mt LS(SEMI) SEMI  &kp SQT              &kp ENTER                      &kp ENTER
+&kp TILDE  &mt LS(N1) N1  &mt LS(N2) N2  &mt LS(N3) N3   &mt LS(N4) N4          &mt LS(N5) N5  &cycletab             &mt LS(N6) N6  &mt LS(N7) N7          &mt LS(N8) N8  &mt LS(N9) N9  &mt LS(N0) N0      &kp MINUS            &plusequal         &kp SLASH   &kp BACKSPACE
+&kp TAB    &kp Q          &kp W          &kp E           &kp R                  &kp T          &kp LG(D)             &kp Y          &kp U                  &kp I          &kp O          &kp P              &mt LS(LBKT) LBKT    &mt LS(RBKT) RBKT  &kp NUBS    &kp DEL
+&kp LSHFT  &lt 2 A        &kp S          &lt 1 D         &hotab_sticky LCTRL F  &kp G                                &kp H          &hotab_sticky LCTRL J  &kp K          &kp L          &mt LS(SEMI) SEMI  &kp SQT              &kp LG(LS(S))                  &kp ENTER
 &kp LCTRL  &hashdash      &kp Z          &kp X           &kp C                  &kp V          &kp B                 &kp B          &kp N                  &kp M          &kp COMMA      &kp DOT            &mt LS(SLASH) SLASH  &kp UP             &kp ESCAPE  &kp RSHFT
-&kp LCTRL  &kp LWIN       &kp LALT       &kp LANGUAGE_2                                        &hotab LSHFT SPACE    &spaceback                                           &sl 4          &kp RALT           &kp LEFT             &kp DOWN           &kp RIGHT   &kp RCTRL
+&kp LCTRL  &kp LWIN       &kp LALT       &kp LANGUAGE_2                                        &hotab LSHFT SPACE    &spaceback                                           &none          &kp RALT           &kp LEFT             &kp DOWN           &kp RIGHT   &kp RCTRL
             >;
 
             sensor-bindings =
@@ -302,6 +324,22 @@
 &trans  &trans        &trans        &trans        &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &bt BT_CLR  &trans
 &trans  &trans        &trans        &trans                        &trans    &trans                  &trans  &trans  &trans  &trans  &trans      &trans
             >;
+        };
+
+        encoderMod {
+            bindings = <
+&trans  &trans  &trans                                                                                   &trans  &trans  &trans  &trans
+&trans  &trans  &trans                                                                                   &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &cycletab_esc    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans           &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                   &trans  &trans  &trans  &trans  &trans  &trans  &trans          &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans           &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans                  &trans           &trans                  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+
+            sensor-bindings =
+                <&inc_dec_kp RIGHT LEFT>,
+                <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
     };
 };
