@@ -260,7 +260,12 @@
         cycletab_esc: cycletab_esc {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&enteresc &tog 4>;
+            bindings =
+                <&mt ESC ENTER>,
+                <&macro_pause_for_release>,
+                <&tog 4>,
+                <&macro_release>;
+
             label = "CYCLETAB_ESC";
         };
     };
